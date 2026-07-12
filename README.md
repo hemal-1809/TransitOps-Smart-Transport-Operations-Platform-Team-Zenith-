@@ -1,51 +1,46 @@
-
 # TransitOps: Smart Transport Operations Platform (Team Zenith)
 
-TransitOps is a comprehensive, state of the art fleet and transport operations management platform designed to optimize and streamline transport logistics, fleet maintenance, driver safety, fuel tracking, and trip dispatching.
-
----
-
-## 🚀 Key Features
-
-- **Real-time Dashboard**: Comprehensive analytics, alerts, metrics, and operation tracking.
-- **Vehicle Registry**: Detailed logs of vehicles, status, and health indicators.
-- **Trip Dispatcher**: Dynamic scheduling, live dispatch controls, and trip logs.
-- **Drivers & Safety**: Logs of driver details, performance ratings, and safety alerts.
-- **Maintenance & Logs**: Scheduled maintenance, service logs, and expense tracking.
-- **Fuel Tracking & Expenses**: Monitoring fuel transactions, efficiency, and cost trends.
-- **Reports & Analytics**: Custom PDF/CSV reports generation, filterable tables, and charts.
-- **RBAC Settings**: Role-Based Access Control configuration to manage access for Admin, Dispatcher, Driver, and Auditor roles.
+TransitOps is a comprehensive, state-of-the-art fleet and transport operations management platform designed to optimize and streamline transport logistics, fleet maintenance, driver safety, fuel tracking, and trip dispatching. It is tailored specifically for Indian road transport and logistics environments.
 
 ---
 
 ## 🛠️ Project Structure
+
 ```text
 TransitOps-Smart-Transport-Operations-Platform-Team-Zenith-/
 ├── Backend/                 # Flask Backend Application
-│   ├── models/              # Database models (User, Vehicle, Trip, Driver, etc.)
-│   ├── routes/              # API Route Handlers (Auth, Dashboard, Trip, etc.)
+│   ├── models/              # Database Models (User, Vehicle, Trip, Driver, FuelLog, etc.)
+│   ├── routes/              # API Route Blueprints (Auth, Dashboard, Trip, Maintenance, etc.)
 │   ├── app.py               # Main Flask application entry point
-│   ├── config.py            # Configuration settings
+│   ├── config.py            # Dynamic configuration loader
+│   ├── config.json          # Preconfigured SQL & SMTP secret keys
 │   └── requirements.txt     # Python backend dependencies
 ├── Frontend/                # Vite + React Frontend Application
 │   ├── src/                 # Source components & React Context
+│   │   ├── components/      # View layouts (Dashboard, VehicleRegistry, SettingsRBAC, etc.)
+│   │   ├── context/         # React Context Provider (TransitContext.jsx)
+│   │   ├── index.css        # Core custom styling rules
+│   │   └── main.jsx         # App mounting point
+│   ├── server.ts            # Node Express Wrapper & Gemini API proxy router
 │   ├── package.json         # Frontend configuration and scripts
-│   └── vite.config.js       # Vite configuration
-└── README.md                # Main repository documentation
+│   └── vite.config.js       # Vite bundler configuration
+└── README.md                # Main repository documentation (this file)
 ```
 
 ---
 
 ## 💻 Tech Stack
 
-- **Frontend**: React (Vite), TailwindCSS / Vanilla CSS, React Router, Context API, Lucide Icons, Chart.js.
-- **Backend**: Python, Flask, Flask-SQLAlchemy (MySQL), Flask-Login, Flask-Migrate, Flask-CORS.
+- **Frontend**: React (Vite), JavaScript / TypeScript, Tailwind CSS, React Context API, Lucide Icons, Chart.js.
+- **Backend**: Python, Flask, Flask-SQLAlchemy (MySQL), Flask-CORS, PyMySQL.
+- **AI Engine**: Google Gemini API (`gemini-3.5-flash`) via `@google/genai`.
 
 ---
 
 ## ⚙️ Setup and Installation
 
-### 1. Backend Setup (Flask)
+### 1. Database & Backend Setup (Flask)
+
 Navigate to the `Backend` directory:
 ```bash
 cd Backend
@@ -63,57 +58,67 @@ cd Backend
   source venv/bin/activate
   ```
 
-**Step 2: Install Dependencies**
+**Step 2: Install Python Dependencies**
 ```bash
 pip install -r requirements.txt
 ```
 
-**Step 3: Database & Environment Configuration**
-Create a `.env` file in the `Backend` folder:
-```env
-FLASK_APP=app.py
-FLASK_ENV=development
-DATABASE_URL=mysql+pymysql://username:password@localhost/transitops_db
-SECRET_KEY=your_secret_key_here
+**Step 3: Database Credentials**
+Ensure your local MySQL instance is running. Define your connection parameters inside `Backend/config.json`:
+```json
+"SQLALCHEMY_DATABASE_URI": "mysql+pymysql://<db_user>:<db_password>@<db_host>:<db_port>/Transitops"
 ```
+*If you need to change your local MySQL username or password, please edit `config.json`.*
 
-**Step 4: Run the Backend**
+**Step 4: Run the Backend Application**
 ```bash
-flask run
+python app.py
 ```
+*On boot, the application automatically verifies the database, instantiates all schema tables, and populates them with initial mock records.*
 
 ---
 
 ### 2. Frontend Setup (React/Vite)
+
 Navigate to the `Frontend` directory:
 ```bash
-cd Frontend
+cd ../Frontend
 ```
 
-**Step 1: Install Dependencies**
+**Step 1: Install Node Dependencies**
 ```bash
 npm install
 ```
 
-**Step 2: Configuration**
-Rename `.env.example` to `.env.local` and add your keys:
+**Step 2: Create Environment variables**
+Create a new file named `.env` in the `Frontend/` folder to host your Gemini API key:
 ```env
-VITE_API_URL=http://localhost:5000
-VITE_GEMINI_API_KEY=your_gemini_api_key
+GEMINI_API_KEY=your_actual_gemini_api_key
 ```
 
-**Step 3: Run the Development Server**
+**Step 3: Start the Server**
 ```bash
 npm run dev
 ```
-Open `http://localhost:5173` in your browser.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## 🔑 Preseeded Demonstration Accounts
+
+You can sign in using one of the preconfigured demonstration accounts:
+
+* **Fleet Manager**: `manager@transitops.com`
+* **Dispatcher**: `dispatcher@transitops.com`
+* **Safety Officer**: `safety@transitops.com`
+* **Financial Analyst**: `finance@transitops.com`
 
 ---
 
 ## 👥 Contributors (Team Zenith)
-Developed with passion by Team Zenith.
-Members:
-Hemal Mistry, 
-Het Mehta ,
-Maitri Parmar, 
-Anushree Tripathi.
+
+Developed with passion by Team Zenith:
+- **Hemal Mistry**
+- **Het Mehta**
+- **Maitri Parmar**
+- **Anushree Tripathi**

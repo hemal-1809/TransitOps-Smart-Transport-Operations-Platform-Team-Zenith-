@@ -112,3 +112,8 @@ Open `http://localhost:5173` in your browser.
 
 ## 👥 Contributors (Team Zenith)
 Developed with passion by Team Zenith.
+Members:
+Hemal Mistry
+Het Mehta
+Maitri Parmar
+Anushree Tripathi

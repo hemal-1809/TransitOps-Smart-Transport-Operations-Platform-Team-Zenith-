@@ -1,7 +1,7 @@
 
 # TransitOps: Smart Transport Operations Platform (Team Zenith)
 
-TransitOps is a comprehensive, state-of-the-art fleet and transport operations management platform designed to optimize and streamline transport logistics, fleet maintenance, driver safety, fuel tracking, and trip dispatching.
+TransitOps is a comprehensive, state of the art fleet and transport operations management platform designed to optimize and streamline transport logistics, fleet maintenance, driver safety, fuel tracking, and trip dispatching.
 
 ---
 

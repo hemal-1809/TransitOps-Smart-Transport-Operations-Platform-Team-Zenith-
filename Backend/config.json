@@ -1,0 +1,7 @@
+{
+  "SECRET_KEY": "transitops-super-secret-key-12345",
+  "SQLALCHEMY_DATABASE_URI": "mysql+pymysql://root:Hetm189@localhost:3306/Transitops",
+  "SQLALCHEMY_TRACK_MODIFICATIONS": false,
+  "GMAIL_USER": "tracknfix7@gmail.com",
+  "GMAIL_PASSWORD": "nqteenlhqxgenqyt"
+}

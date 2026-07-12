@@ -1,0 +1,6 @@
+{
+  "name": "TransitOps",
+  "description": "TransitOps is a Smart Transport Operations Platform for managing fleet operations, vehicle registries, driver safety scoring, real-time trip dispatch, maintenance logs, fuel expense tracking, and role-based access control.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
